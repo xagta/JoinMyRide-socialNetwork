@@ -4,6 +4,7 @@ namespace Pidev\UserBundle\Controller;
 
 use Pidev\UserBundle\Entity\Membre;
 use Pidev\UserBundle\Entity\Profil;
+use Pidev\UserBundle\Form\ProfilType;
 use Pidev\UserBundle\PidevUserBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,20 +17,25 @@ class ProfileController extends Controller
     {
         $profile = new Profil();
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $form= $this->createForm(ProfilType::class) ;
         $currentUser = $this->get('doctrine.orm.entity_manager')
             ->getRepository('PidevUserBundle:Membre')
             ->find([
                 'id' => $user
             ]);
 
-        if ($this->get('doctrine.orm.entity_manager')->getRepository('PidevUserBundle:Profil')->findBy(
-                array('idMembre' => $user)
-            ) != null
-        ) {
-            return new Response('Membre has profile ');
+        $profile=$this->get('doctrine.orm.entity_manager')->getRepository('PidevUserBundle:Profil')->findOneBy(
+            array('idMembre' => $user))  ;
+
+        if ($profile != null)
+
+       {
+
+            return $this->redirectToRoute('Profile',array('id'=>$id)) ;
 
         } else {
-            return $this->render('PidevUserBundle:Front:ProfileMembre.html.twig', array('profile' => $profile));
+
+            return $this->render('PidevUserBundle:Front:ProfileMembre.html.twig', array('profile' => $profile,'form'=>$form->createView()));
         }
 
 
@@ -38,7 +44,7 @@ class ProfileController extends Controller
     public function newProfileAction(Request $request)
     {
         $profile = new Profil();
-
+        $form= $this->createForm(ProfilType::class) ;
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $currentUser = $this->get('doctrine.orm.entity_manager')
             ->getRepository('PidevUserBundle:Membre')
@@ -46,25 +52,42 @@ class ProfileController extends Controller
                 'id' => $user
             ]);
 
+        $form->handleRequest($request) ;
+
         $em = $this->getDoctrine()->getManager();
 
-        if ($request->isMethod('POST')) {
-            $profile->setIdMembre($currentUser);
+        if ($form->isSubmitted()) {
+
+
+            /*$profile->setIdMembre($currentUser);
             $profile->setDescription($request->get('Description'));
             $profile->setFacebook($request->get('facebook'));
             $profile->setGoogle($request->get('google'));
             $profile->setTwitter($request->get('twitter'));
             $profile->setLinkedin($request->get('linkedin'));
-            $profile->setPhoto('http://www.hodaka-kenich.com/%E4%BC%8A%E8%97%A4%E5%9C%AD%EF%BC%8EJPG.jpg');
+            $profile->setPhoto();
             $profile->setPhonenumber($request->get('phone'));
-            $profile->setPseudo($request->get('pseudo'));
+            $profile->setPseudo($request->get('pseudo'));*/
+
+
+            $profile=$form->getData() ;
+            $profile->setIdMembre($currentUser);
+
+
+
+
+
+
+
 
             $em->persist($profile);
             $em->flush();
 
 
         }
-        return $this->render('PidevUserBundle:Front:ProfileMembre.html.twig', array('user' => $user, 'profile' => $profile));
+
+       return $this->render('PidevUserBundle:Front:ProfileMembre.html.twig', array('user' => $user, 'profile' => $profile,'form' => $form->createView()));
+
     }
 
 
@@ -86,11 +109,17 @@ class ProfileController extends Controller
         }
     }
 
-    public function Affiche1Profile($id)
+    public function Affiche1ProfileAction($id)
     {
         $em=$this->getDoctrine()->getManager();
-        $profile=$em->getRepository('PidevUserBundle:Profil')->findOneBy(array('id'=>$id));
+        $user=$em->getRepository('PidevUserBundle:Membre')->findOneBy(array('id'=>$id)) ;
+        $profile=$em->getRepository('PidevUserBundle:Profil')->findOneBy(array('idMembre'=>$user));
+        $pubs=$em->getRepository('PidevUserBundle:PublicationProfil')->findBy(array('idProfil'=>$profile));
+        $test=$this->getDoctrine()->getRepository('PidevUserBundle:CommentaireProfile')->findAll();
 
-        return $this->render('PidevUserBundle:Front:Profile.html.twig',array('Profile'=>$profile)) ;
+
+        return $this->render('PidevUserBundle:Front:Profile.html.twig',array('Profile'=>$profile ,'Pubs'=>$pubs,'Coms'=>$test)) ;
     }
+
+
 }

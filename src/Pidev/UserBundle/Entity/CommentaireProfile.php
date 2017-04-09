@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CommentaireProfile
  *
  * @ORM\Table(name="commentaire_profile", indexes={@ORM\Index(name="id_publication", columns={"id_publication"}), @ORM\Index(name="id_publication_2", columns={"id_publication"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Pidev\UserBundle\Repository\CommentaireProfileRepository")
  */
 class CommentaireProfile
 {
@@ -44,6 +44,72 @@ class CommentaireProfile
      * })
      */
     private $idPublication;
+
+    /**
+     * @return int
+     */
+    public function getIdCom()
+    {
+        return $this->idCom;
+    }
+
+    /**
+     * @param int $idCom
+     */
+    public function setIdCom($idCom)
+    {
+        $this->idCom = $idCom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContenu()
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * @param string $contenu
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return \PublicationProfil
+     */
+    public function getIdPublication()
+    {
+        return $this->idPublication;
+    }
+
+    /**
+     * @param \PublicationProfil $idPublication
+     */
+    public function setIdPublication($idPublication)
+    {
+        $this->idPublication = $idPublication;
+    }
+
+
 
 
 }

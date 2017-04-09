@@ -4,6 +4,10 @@ namespace Pidev\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Profil
@@ -11,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="profil", indexes={@ORM\Index(name="id_membre", columns={"id_membre"})})
  * @ORM\Entity(repositoryClass="Pidev\UserBundle\Repository\ProfilRepository")
  * @UniqueEntity("idMembre")
+ * @Vich\Uploadable
  */
 
 class Profil
@@ -27,11 +32,21 @@ class Profil
 
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="Profil_photo", fileNameProperty="photo")
+     *
+     * @var File
+     */
+    private $imageFile;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="photo", type="text", length=255, nullable=false)
      */
-    private $photo;
+    protected $photo ;
 
     /**
      * @var string
@@ -259,7 +274,30 @@ class Profil
     }
 
 
+    /**
+     * @param File|null $image
+     * @return $this
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
 
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
 
 
 

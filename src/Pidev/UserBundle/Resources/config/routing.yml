@@ -39,3 +39,10 @@ RechercheProfile:
 Profile:
       path: /profile/{id}
       defaults: { _controller:  PidevUserBundle:Profile:Affiche1Profile}
+AddPub:
+      path: /AddPub/{id}
+      defaults: { _controller:  PidevUserBundle:Pub:AjouterPublication}
+
+testComment:
+      path: /testcomment
+      defaults: { _controller:  PidevUserBundle:Comment:testComment}

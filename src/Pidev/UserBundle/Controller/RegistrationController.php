@@ -39,6 +39,7 @@ class RegistrationController extends BaseController
             $user->setDateInscri($date) ;
             $user->setPointsFidelite(0) ;
 
+
             $user->setEnabled(true);
 
             $em = $this->getDoctrine()->getManager();

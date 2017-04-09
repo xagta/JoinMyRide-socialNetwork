@@ -52,6 +52,88 @@ class PublicationProfil
      */
     private $idProfil;
 
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContenu()
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * @param string $contenu
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPicpath()
+    {
+        return $this->picpath;
+    }
+
+    /**
+     * @param string $picpath
+     */
+    public function setPicpath($picpath)
+    {
+        $this->picpath = $picpath;
+    }
+
+    /**
+     * @return \Profil
+     */
+    public function getIdProfil()
+    {
+        return $this->idProfil;
+    }
+
+    /**
+     * @param \Profil $idProfil
+     */
+    public function setIdProfil($idProfil)
+    {
+        $this->idProfil = $idProfil;
+    }
+
+
+
 
 }
 
