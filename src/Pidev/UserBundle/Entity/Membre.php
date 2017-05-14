@@ -6,6 +6,7 @@ namespace Pidev\UserBundle\Entity;
  * Date: 12/03/2017
  * Time: 14:43
  */
+use FOS\MessageBundle\Model\ParticipantInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -18,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 
  */
 
-class Membre extends BaseUser
+class Membre extends BaseUser implements ParticipantInterface
 {
     /**
 
@@ -192,5 +193,23 @@ class Membre extends BaseUser
     {
         $this->enabled = $enabled;
     }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+
 
 }

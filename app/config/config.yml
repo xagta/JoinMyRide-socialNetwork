@@ -64,11 +64,9 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    transport: gmail
+    username:  safwane.ettih@esprit.tn
+    password:  22101995
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
@@ -94,3 +92,24 @@ vich_uploader:
         Profil_photo:
             uri_prefix:         /images/uploads
             upload_destination: '%kernel.root_dir%/../web/images/uploads'
+
+        Publication:
+                    uri_prefix:         /images/uploads/pubs
+                    upload_destination: '%kernel.root_dir%/../web/images/uploads/pubs'
+
+
+fos_message:
+    db_driver: orm
+    thread_class: Pidev\UserBundle\Entity\Messages\Thread
+    message_class: Pidev\UserBundle\Entity\Messages\Message
+
+knp_paginator:
+    page_range:                 5          # default page range used in pagination control
+    default_options:
+        page_name:              page       # page query parameter name
+        sort_field_name:        sort       # sort field query parameter name
+        sort_direction_name:    direction  # sort direction query parameter name
+        distinct:               true       # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig                         # sort link template

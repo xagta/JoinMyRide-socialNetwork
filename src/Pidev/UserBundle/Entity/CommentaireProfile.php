@@ -46,6 +46,16 @@ class CommentaireProfile
     private $idPublication;
 
     /**
+     * @var \Membre
+     *
+     * @ORM\ManyToOne(targetEntity="Pidev\UserBundle\Entity\Membre")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_membre", referencedColumnName="id")
+     * })
+     */
+    private $idMembre;
+
+    /**
      * @return int
      */
     public function getIdCom()
@@ -107,6 +117,22 @@ class CommentaireProfile
     public function setIdPublication($idPublication)
     {
         $this->idPublication = $idPublication;
+    }
+
+    /**
+     * @return \Membre
+     */
+    public function getIdMembre()
+    {
+        return $this->idMembre;
+    }
+
+    /**
+     * @param \Membre $idMembre
+     */
+    public function setIdMembre($idMembre)
+    {
+        $this->idMembre = $idMembre;
     }
 
 

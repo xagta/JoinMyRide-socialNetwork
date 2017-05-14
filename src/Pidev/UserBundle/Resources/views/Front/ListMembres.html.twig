@@ -29,15 +29,19 @@
                     <div class="agent">
 
                         <div class="agent-avatar">
-                            <a href="agent-page.htm">
-                                <img src="{{ profile.photo}}" alt="">
+                            <a href="{{ path('Profile',{'id':profile.idMembre.id}) }}">
+        {% if  profile.photo starts with 'http' %}
+            <img src="{{ profile.photo }}" >
+        {% else %}
+                                <img src="{{asset(vich_uploader_asset(profile,'imageFile'))}}" alt="">
+            {% endif %}
                                 <span class="view-profile-btn">View Profile</span>
                             </a>
                         </div>
 
                         <div class="agent-content">
                             <div class="agent-name">
-                                <h4><a href="agent-page.htm">{{ profile.pseudo}}</a></h4>
+                                <h4><a href="{{ path('Profile',{'id':profile.idMembre.id}) }}">{{ profile.pseudo}}</a></h4>
                                 <span>{{profile.description }}</span>
                             </div>
 

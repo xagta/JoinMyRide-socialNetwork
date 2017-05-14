@@ -48,7 +48,7 @@ class RegistrationController extends BaseController
             $this->addFlash('success', 'Welcome ' . $user->getEmail());
             $this->checkEmailAction() ;
 
-
+            return $this->redirectToRoute('MembreProfileInit') ;
         }
 
         return $this->render('FOSUserBundle:Registration:register.html.twig', [

@@ -31,25 +31,75 @@ private $id ;
 
 
     /**
-     * @var \Pidev\UserBundle\Entity\Membre
-     * @ORM\Column(name="Follower",type="integer")
+     * @var \Membre
+     *
      * @ORM\ManyToOne(targetEntity="Pidev\UserBundle\Entity\Membre")
      * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="Follower",referencedColumnName="id")
+     *   @ORM\JoinColumn(name="Follower", referencedColumnName="id")
      * })
      */
 private $Follower ;
 
 
     /**
-     * @var \Pidev\UserBundle\Entity\Membre
-     * @ORM\Column(name="Followed",type="integer")
+     * @var \Membre
+     *
      * @ORM\ManyToOne(targetEntity="Pidev\UserBundle\Entity\Membre")
      * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="Followed",referencedColumnName="id")
+     *   @ORM\JoinColumn(name="Followed", referencedColumnName="id")
      * })
      */
 private $Followed ;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return Membre
+     */
+    public function getFollower()
+    {
+        return $this->Follower;
+    }
+
+    /**
+     * @param Membre $Follower
+     */
+    public function setFollower($Follower)
+    {
+        $this->Follower = $Follower;
+    }
+
+    /**
+     * @return Membre
+     */
+    public function getFollowed()
+    {
+        return $this->Followed;
+    }
+
+    /**
+     * @param Membre $Followed
+     */
+    public function setFollowed($Followed)
+    {
+        $this->Followed = $Followed;
+    }
+
+
 
 
 

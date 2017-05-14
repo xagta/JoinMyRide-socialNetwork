@@ -15,26 +15,7 @@
         {% endblock %}
     </head>
     <body>
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-               {# {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>#}
-            {% else %}
-                {#<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
-            {% endif %}
-        </div>
 
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="flash-{{ type }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
 
         <div id="wrapper">
 
@@ -51,11 +32,7 @@
                         <div class="left-side">
 
                             <!-- Top bar -->
-                            <ul class="top-bar-menu">
-                                <li><i class="fa fa-phone"></i> (123) 123-456 </li>
-                                <li><i class="fa fa-envelope"></i> <a href="#"><span class="__cf_email__" data-cfemail="513e3737383234113429303c213d347f323e3c">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></a></li>
 
-                            </ul>
 
                         </div>
                         <!-- Left Side Content / End -->
@@ -93,7 +70,7 @@
 
                                 {% image 'bundles/views/images/logo.png' %}
 
-                                <img src="{{ asset_url }}" href="index-1.html" alt="Example"/>
+                                <img src="{{ asset_url }}" href="{{ path('fos_user_security_login') }}" alt="Example"/>
                                 {% endimage %}
                             </div>
 
@@ -112,46 +89,23 @@
 
                                     </li>
 
-                                    <li><a href="#">Listings</a>
+                                    <li><a href="#">Social</a>
                                         <ul>
-                                            <li><a href="#">List Layout</a>
 
+                                            {% block MyprofileLink %}  {% endblock %}
                                             </li>
-                                            <li><a href="#">Grid Layout</a>
-
-                                            </li>
-                                            <li><a href="#">Half Map</a>
-
-                                            </li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="#">Features</a>
-                                        <ul>
-                                            <li><a href="#">Single Properties</a>
-
-                                            </li>
-                                            <li><a href="#">Search Styles</a>
-
-                                            </li>
-                                            <li
-                                            </li>
-                                            <li><a href="#">Agents</a>
-
-                                            </li>
-
-                                            <li><a href="submit-property.htm">Submit Property</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a class="current" href="#">Pages</a>
-                                        <ul>
-                                            <li><a href="blog.htm">Blog</a>
+                                            <li><a href="{% block BrowseMembersLink %}{% endblock %}">Browse Members</a>
 
                                             </li>
 
                                         </ul>
                                     </li>
+
+
+
+
+
+
 
                                 </ul>
                             </nav>
@@ -165,8 +119,14 @@
                         <div class="right-side">
                             <!-- Header Widget -->
                             <div class="header-widget">
-                                <a href="login-register.htm" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
-                                <a href="submit-property.htm" class="button border">Submit Property</a>
+                                {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                                    <a href="{{ path('fos_user_security_login') }}" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
+                                    {% else %}
+
+                                        <a href="{{ path('fos_user_security_logout') }}" class="sign-in"><i class="fa fa-user"></i> Logout</a>
+                                {% endif %}
+
                             </div>
                             <!-- Header Widget / End -->
                         </div>
@@ -196,7 +156,7 @@
                             <nav id="breadcrumbs">
                                 <ul>
                                     <li><a href="#">Home</a></li>
-                                    <li>Log In & Register</li>
+                                    <li>{% block where %} {% endblock %}</li>
                                 </ul>
                             </nav>
 
@@ -232,34 +192,33 @@
                             {% endimage %}
 
                             <br><br>
-                            <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-                        </div>
+<p>
+ Join My ride est une plateforme de covoiturage en ligne  .
+
+
+</p>                        </div>
 
                         <div class="col-md-4 col-sm-6 ">
                             <h4>Helpful Links</h4>
                             <ul class="footer-links">
-                                <li><a href="#">Login</a></li>
-                                <li><a href="#">Sign Up</a></li>
-                                <li><a href="#">My Account</a></li>
+                                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                                <li><a href="{{ path('fos_user_registration_register') }}">Sign Up</a></li>
+
+                                        <li><a href="{{ path('fos_user_security_login') }}">My Account</a></li>
+
                                 <li><a href="#">Add Property</a></li>
                                 <li><a href="#">Pricing</a></li>
                                 <li><a href="#">Privacy Policy</a></li>
                             </ul>
 
-                            <ul class="footer-links">
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Our Agents</a></li>
-                                <li><a href="#">How It Works</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
+
                             <div class="clearfix"></div>
                         </div>
 
                         <div class="col-md-3  col-sm-12">
                             <h4>Contact Us</h4>
                             <div class="text-widget">
-                                <span>12345 Little Lonsdale St, Melbourne</span> <br>
+                                <span>12345 Tunis, Benarous</span> <br>
                                 Phone: <span>(123) 123-456 </span><br>
                                 E-Mail:<span> <a href="#"><span class="__cf_email__" data-cfemail="315e5757585254715449505c415d541f525e5c">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></a> </span><br>
                             </div>
@@ -278,7 +237,7 @@
                     <!-- Copyright -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
+                            <div class="copyrights">© 2017 JoinMyride. All Rights Reserved.</div>
                         </div>
                     </div>
 
@@ -297,7 +256,7 @@
             {% javascripts 'bundles/views/scripts/*' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
-            <script src="{{ asset('bundles/views/scripts/switcher.js') }}" />
+
 
 
 

@@ -1,9 +1,28 @@
 {% extends '@PidevUser/layout.html.twig' %}
 {% block title %}
-    My profile
+    {% if my==true %}
+        My Profile
+    {% else %}
+        {{ Profile.pseudo~"Profile" }}
+    {% endif %}
 {% endblock %}
-{%block Page_title  %}my Profile {% endblock %}
+{%block Page_title  %}Profile {{ Profile.pseudo }} {% endblock %}
+{% block where %}
+
+    {% if my==true %}
+        My Profile
+        {% else %}
+            {{ Profile.pseudo~"Profile" }}
+            {% endif %}
+
+    {% endblock %}
+                                {% if not is_granted("IS_AUTHENTICATED_ANONYMOUSLY") %}
+                                    {% block MyprofileLink %} <li><a href="{{ path('Profile',{'id':current.id}) }}">My Profile</a>  {% endblock %}
+                                    {% block MyprofileLink1  %}{{ path('Profile',{'id':current.id}) }} {% endblock %}
+                                    {% block BrowseMembersLink %} {{ path('ListProfiles') }} {% endblock %}
+                                     {% endif %}
 {% block Content %}
+
 
     <div class="row">
 
@@ -11,7 +30,11 @@
             <div class="agent agent-page">
 
                 <div class="agent-avatar">
-                    <img src="{{ Profile.photo }}" alt="">
+                    {% if  Profile.photo starts with 'http' %}
+                    <img src="{{ Profile.photo }}" >
+                    {% else %}
+                    <img src="{{asset(vich_uploader_asset(Profile,'imageFile'))}}" alt="">
+                    {% endif %}
                 </div>
 
                 <div class="agent-content">
@@ -22,44 +45,61 @@
 
                     <p>{{ Profile.description }}</p>
 
-                    <ul class="agent-contact-details">
+                    <ul id="details" class="agent-contact-details">
+
                         <li><i class="sl sl-icon-call-in"></i>({{ Profile.phonenumber }}</li>
                         <li><i class="fa fa-envelope-o "></i><a href="#">{{ Profile.idMembre.email }}</a></li>
                     </ul>
 
-                    <ul class="social-icons">
+                    <ul id="social" class="social-icons">
                         <li><a class="facebook" href="{{ Profile.facebook }}"><i class="icon-facebook"></i></a></li>
                         <li><a class="twitter" href="{{ Profile.twitter }}"><i class="icon-twitter"></i></a></li>
                         <li><a class="gplus" href="{{ Profile.google }}"><i class="icon-gplus"></i></a></li>
                         <li><a class="linkedin" href="{{ Profile.linkedin }}"><i class="icon-linkedin"></i></a></li>
                     </ul>
-                    <div class="clearfix"></div>
-                </div>
 
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <a id="follow" href="{{ path('Follow', {'id': Profile.idMembre.id} ) }}"><button id="followbtn" class="button"  >Follow</button></a>
+                <a id="unfollow" href="{{ path('unFollow', {'id': Profile.idMembre.id} ) }}"><button id="followbtn" class="button"  >Unfollow</button></a>
             </div>
         </div>
-
+        <h2 id="Pubh2" class="agent-name"> Publications</h2>
+        {% if my==true  %}
         <div class="agent agent-name agent-content">
-        <h2 class="agent-name"> Publications</h2>
 
-<form method="post" action="{{ path('AddPub', {'id': Profile.id} ) }}" class="agent-form">
-            <textarea name="PublicationAdd" cols="3" rows="1" id="PublicationAdd" placeholder="Publish Something" spellcheck="true" required="required" class="error"></textarea>
-    <span class="im im-icon-File-Upload"></span>
 
-            <input class="submit button" id="submit" value="Publish" type="submit">
+            {{ form_start(formPub) }}
+            {{ form_widget(formPub.contenu) }}
+
+            <div class="photoUpload">
+                <span><i class="fa fa-upload"></i> Upload Photo</span>
+
+
+                {{ form_widget(formPub.imageFile) }}
+
+            </div>
+
+
+           {{ form_widget(formPub.Publish) }}
         </div>
+        {{ form_end(formPub) }}
     </div>
-    </form>
 
-<div class="col-md-12">
-<diV class="listings-container listing-">
+
+
+{% endif %}
+    <div id="pubs" class="col-md-12">
+<diV id="pubs" class="listings-container listing-">
 
     {% for Pub in Pubs %}
-        <div class="listing-item centered">
+        <div class="listing-item centered" id="{{ Pub.id }}">
 
             <div class="listing-title">
 
-                <h2 class="agent-title">{{ Profile.idMembre.username }}</h2>
+                <h2 class="agent-title">{{ Profile.pseudo}}</h2>
             </div>
 
 
@@ -67,22 +107,31 @@
             <h4>{{ Pub.contenu }}</h4>
             <diV class="clearfix"></diV>
             {% if Pub.picpath is not null %}
-                <img src="{{ Pub.picpath }}"  class="list-layout center-block">
+                {% if Pub.picpath starts with 'http' %}
+                    <img src="{{ Pub.picpath }}"  class="list-layout center-block">
+                {% else %}
+                    <img src="{{asset(vich_uploader_asset(Pub,'imageFile'))}}" class="list-layout center-block"  />
+                {% endif %}
             {% endif %}
 
 
 
  <div class="listing-footer">
-     <h4 class="headline margin-bottom-35">Comments(2)</h4>
+     <h4 class="headline margin-bottom-35">Comments </h4>
+     <table border="0" class="basic-table" >
      {% for com in Coms %}
          {% if com.idPublication==Pub %}
+<tr>
+    <td style="width:20%"><a href="{{ path('Profile', {'id':  com.idMembre.id}) }}">{{ com.idMembre.username }}</a></td>
+             <td >{{ com.contenu }}</td>
 
-             <h5>{{ com.contenu }}</h5>
-
+</tr>
             {% endif %}
          {% endfor %}
+     </table>
      <div>
-         <form method="post" action="">
+         <form method="post" action="{{ path('AjoutComment') }}">
+             <input hidden="hidden" name="Pubid"  value="{{ Pub.id }}">
                 <input type="textarea" name="comment" >
                 <input type="submit" value="comment"  >
          </form>
@@ -96,5 +145,55 @@
 
 </diV>
 </div>
+<script> console.log({{ my }}) ;</script>
 
-{% endblock %}
+    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <script>
+            document.getElementById('unfollow').remove();
+            document.getElementById('follow').remove();
+            document.getElementById('details').remove();
+            document.getElementById('social').remove();
+           // document.getElementById('pubs').remove();
+            document.getElementById('Pubh2').remove();
+
+        </script>
+
+
+    {% endif %}
+
+{% if follow is null  %}
+        <script>
+            {% if my!=true %}
+            document.getElementById('details').remove();
+            document.getElementById('social').remove();
+            document.getElementById('pubs').remove();
+            document.getElementById('Pubh2').remove();
+            {% else %}
+            document.getElementById('follow').remove();
+
+
+            {% endif %}
+
+            document.getElementById('unfollow').remove();
+
+
+        </script>
+{% endif %}
+
+{% if follow is not null %}
+        <script>
+            {% if my==true %}
+            document.getElementById('unfollow').remove();
+            {% endif %}
+            document.getElementById('follow').remove();
+
+        </script>
+
+{% endif %}
+
+
+
+
+
+
+    {% endblock %}

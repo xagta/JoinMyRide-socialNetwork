@@ -3,12 +3,16 @@
 namespace Pidev\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PublicationProfil
  *
  * @ORM\Table(name="publication_profil", indexes={@ORM\Index(name="id_profil", columns={"id_profil"})})
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class PublicationProfil
 {
@@ -35,12 +39,25 @@ class PublicationProfil
      */
     private $contenu;
 
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="Publication", fileNameProperty="picpath")
+     *
+     * @var File
+     */
+    private $imageFile;
+
     /**
      * @var string
      *
      * @ORM\Column(name="picpath", type="text", length=255, nullable=false)
      */
     private $picpath;
+
+
+
 
     /**
      * @var \Profil
@@ -134,6 +151,30 @@ class PublicationProfil
 
 
 
+    /**
+     * @param File|null $image
+     * @return $this
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
 
 }
 

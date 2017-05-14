@@ -39,10 +39,18 @@ RechercheProfile:
 Profile:
       path: /profile/{id}
       defaults: { _controller:  PidevUserBundle:Profile:Affiche1Profile}
-AddPub:
-      path: /AddPub/{id}
-      defaults: { _controller:  PidevUserBundle:Pub:AjouterPublication}
 
-testComment:
-      path: /testcomment
-      defaults: { _controller:  PidevUserBundle:Comment:testComment}
+
+AjoutComment:
+      path: /AjouterCommentaire
+      defaults: { _controller:  PidevUserBundle:Comment:AjoutCommentaire}
+
+
+Follow:
+      path: /Follow/{id}
+      defaults: { _controller:  PidevUserBundle:Following:Follow}
+
+unFollow:
+      path: /unFollow/{id}
+      defaults: { _controller:  PidevUserBundle:Following:Unfollow}
+
