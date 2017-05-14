@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b80e834-84d5-4cbd-aa08-6a58ce64e873" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/FOSMessageBundle/views/Message/deleted.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/FOSMessageBundle/views/Message/inbox.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/FOSMessageBundle/views/Message/newThread.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/FOSMessageBundle/views/Message/search.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/FOSMessageBundle/views/Message/sent.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/FOSMessageBundle/views/Message/thread.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/FOSMessageBundle/views/Message/threads_list.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/FOSMessageBundle/views/layout.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Controller/FollowingController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Messages/Message.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Messages/MessageMetadata.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Messages/Thread.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Messages/ThreadMetadata.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Controller/ProfileController.php" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Controller/ProfileController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Controller/RegistrationController.php" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Controller/RegistrationController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/CommentaireProfile.php" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/CommentaireProfile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Following.php" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Following.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Membre.php" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Membre.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Profil.php" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/Profil.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/PublicationProfil.php" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Entity/PublicationProfil.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Resources/views/Front/ListMembres.html.twig" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Resources/views/Front/ListMembres.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Resources/views/Front/Profile.html.twig" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Resources/views/Front/Profile.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pidev/UserBundle/Resources/views/layout.html.twig" afterPath="$PROJECT_DIR$/src/Pidev/UserBundle/Resources/views/layout.html.twig" />
-    </list>
+    <list default="true" id="2b80e834-84d5-4cbd-aa08-6a58ce64e873" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="296">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -398,6 +363,36 @@
               <option name="myItemId" value="Pidev" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pidev02" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pidev02" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pidev" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -614,7 +609,7 @@
       <workItem from="1491945621247" duration="21076000" />
       <workItem from="1493058676337" duration="1870000" />
       <workItem from="1493158754091" duration="6908000" />
-      <workItem from="1494763519266" duration="3949000" />
+      <workItem from="1494763519266" duration="4555000" />
     </task>
     <task id="LOCAL-00001" summary="vichup + coms + Following Entitiy">
       <created>1491760227118</created>
@@ -627,13 +622,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222464000" />
+    <option name="totallyTimeSpent" value="223070000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1360" height="728" extended-state="1" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24925596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24925596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1077,7 +1072,7 @@
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
